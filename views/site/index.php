@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Pronósticos de Renta de Empresa Perforadora ';
 ?>
 <div class="site-index">
 
