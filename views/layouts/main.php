@@ -47,15 +47,21 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
+  
+
+
+<header class="navigation navbar navbar-fixed-top">
+   <div class="container">
+      <?php 
+      NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
+     // <!-- main nav -->
+      echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Inicio', 'url' => ['/site/index']],
@@ -86,6 +92,9 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
+      <!-- /main nav -->
+   </div>
+</header>
 
     <div class="container">
         <?= Breadcrumbs::widget([
@@ -94,6 +103,7 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
+
 </div>
 
 <footer class="footer">
