@@ -48,11 +48,12 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Inicio', 'url' => ['/site/index']],
             [
-                'label' => 'Menú',
+                'label' => 'Catálogos',
                 'items' => [
                     
-                    ['label' => 'Catálogo de Compañías', 'url' => ['/catcias']],
-                    ['label' => 'Catálogo de Activos', 'url' => ['/catactivos']],
+                    ['label' => 'Compañías', 'url' => ['/catcias']],
+                    ['label' => 'Activos', 'url' => ['/catactivos']],
+                    ['label' => 'Esquema de Contratación', 'url' => ['/catesquemactto']],
 
                 ],
             ],
