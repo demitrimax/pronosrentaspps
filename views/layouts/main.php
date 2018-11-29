@@ -26,15 +26,15 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
- 
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-  
+
 
 <header class="navigation navbar navbar-fixed-top">
    <div class="container">
-      <?php 
+      <?php
       NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -50,10 +50,11 @@ AppAsset::register($this);
             [
                 'label' => 'Catálogos',
                 'items' => [
-                    
+
                     ['label' => 'Compañías', 'url' => ['/catcias']],
                     ['label' => 'Activos', 'url' => ['/catactivos']],
                     ['label' => 'Esquema de Contratación', 'url' => ['/catesquemactto']],
+                    ['label' => 'Tipo de Intervenciones', 'url' => ['/catintervenciones']],
 
                 ],
             ],

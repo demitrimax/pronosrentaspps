@@ -244,9 +244,9 @@ CREATE TABLE `catpozos`  (
 -- ----------------------------
 -- Records of catpozos
 -- ----------------------------
-INSERT INTO `catpozos` VALUES (8590, 'AGUA FRIA', '342', '', NULL, NULL, NULL, 19, 2);
-INSERT INTO `catpozos` VALUES (8591, 'AGUA FRIA', '351', '', NULL, NULL, NULL, 19, 2);
-INSERT INTO `catpozos` VALUES (8592, 'AGUA FRIA', '362', '', NULL, NULL, NULL, 19, 2);
+INSERT INTO `catpozos` VALUES (8590, 'AGUA FRIA', '342', 'M', NULL, NULL, NULL, 19, 2);
+INSERT INTO `catpozos` VALUES (8591, 'AGUA FRIA', '351', 'M', NULL, NULL, NULL, 19, 2);
+INSERT INTO `catpozos` VALUES (8592, 'AGUA FRIA', '362', 'M', NULL, NULL, NULL, 19, 2);
 INSERT INTO `catpozos` VALUES (8593, 'AGUA FRIA', '376', '', NULL, NULL, NULL, 19, 2);
 INSERT INTO `catpozos` VALUES (8594, 'AGUA FRIA', '377', '', NULL, NULL, NULL, 19, 2);
 INSERT INTO `catpozos` VALUES (8595, 'AGUA FRIA', '378', '', NULL, NULL, NULL, 19, 2);
