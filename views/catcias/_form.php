@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nacionalidad')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

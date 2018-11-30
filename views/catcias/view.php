@@ -35,7 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'replegal',
             'telefono',
             'nacionalidad',
+            ['format'=>'raw', 'attribute' => 'imagenes'],
         ],
     ]) ?>
+
+
 
 </div>

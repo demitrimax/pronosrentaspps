@@ -19,6 +19,7 @@ use Yii;
  */
 class Catcias extends \yii\db\ActiveRecord
 {
+    public $imageFile;
     /**
      * {@inheritdoc}
      */
@@ -38,6 +39,7 @@ class Catcias extends \yii\db\ActiveRecord
             [['direccion'], 'string', 'max' => 120],
             [['replegal'], 'string', 'max' => 60],
             [['nacionalidad'], 'string', 'max' => 50],
+            [['imageFile'], 'safe'],
         ];
     }
 
@@ -54,6 +56,7 @@ class Catcias extends \yii\db\ActiveRecord
             'replegal'      => 'Representante Legal',
             'telefono'      => 'Telefono',
             'nacionalidad'  => 'Nacionalidad',
+            'imagenes'      => 'Lista de imágenes',
         ];
     }
 
@@ -63,5 +66,16 @@ class Catcias extends \yii\db\ActiveRecord
     public function getCatequipos()
     {
         return $this->hasMany(Catequipos::className(), ['compania' => 'id']);
+    }
+
+    public function getImagenes()
+    {
+        $imagenes = \app\models\Imagencia::findAll(['catciaid'=>$this->id]);
+        $html = '';
+        foreach($imagenes as $key=>$imagen)
+        {
+          $html.="<img src = '/" . $imagen->imagen . "'></img>";
+        }
+        return $html;
     }
 }
