@@ -31,8 +31,11 @@ class Catintervenciones extends \yii\db\ActiveRecord
     {
         return [
             [['nombre'], 'string', 'max' => 20],
+            [['nombre'], 'unique'],
             [['clave'], 'string', 'max' => 5],
+            [['clave'], 'unique'],
             [['colorrgb'], 'string', 'max' => 7],
+
         ];
     }
 

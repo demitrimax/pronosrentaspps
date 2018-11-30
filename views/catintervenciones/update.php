@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Catintervenciones */
 
-$this->title = 'Actualizar tipo de Intervención: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Catintervenciones', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Actualizar tipo de Intervención: ' . $model->nombre;
+$this->params['breadcrumbs'][] = ['label' => 'Catálogo de Intervenciones', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->nombre, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Editar';
 ?>
 <div class="catintervenciones-update">
 

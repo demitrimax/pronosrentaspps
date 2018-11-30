@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Catintervenciones */
 
 $this->title = $model->nombre;
-$this->params['breadcrumbs'][] = ['label' => 'Tipo de intervenciones', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Catálogo de intervenciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="catintervenciones-view">
