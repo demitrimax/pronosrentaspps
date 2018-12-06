@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Catactivos */
+/* @var $model app\models\Catprogramas */
 
-$this->title = 'Editar Activo: ' . $model->nombre;
-$this->params['breadcrumbs'][] = ['label' => 'Catactivos', 'url' => ['index']];
+$this->title = 'Editar Programa Operativo: ' . $model->nombre;
+$this->params['breadcrumbs'][] = ['label' => 'Catálogo de Programas Operativos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Editar';
 ?>
-<div class="catactivos-update">
+<div class="catprogramas-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

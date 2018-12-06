@@ -45,11 +45,11 @@ class Catprogramas extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'nombre' => 'Nombre',
-            'anio' => 'Anio',
-            'version' => 'Version',
-            'usuario_id' => 'Usuario ID',
+            'id'            => 'ID',
+            'nombre'        => 'Nombre',
+            'anio'          => 'Año',
+            'version'       => 'Versión',
+            'usuario_id'    => 'Usuario',
         ];
     }
 

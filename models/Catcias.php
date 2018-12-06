@@ -57,6 +57,7 @@ class Catcias extends \yii\db\ActiveRecord
             'telefono'      => 'Telefono',
             'nacionalidad'  => 'Nacionalidad',
             'imagenes'      => 'Lista de imágenes',
+            'imageFile'     => 'Archivo de Imagen',
         ];
     }
 
@@ -74,7 +75,7 @@ class Catcias extends \yii\db\ActiveRecord
         $html = '';
         foreach($imagenes as $key=>$imagen)
         {
-          $html.="<img src = '/" . $imagen->imagen . "'></img>";
+          $html.="<a href='/" . $imagen->imagefile ."' target='_blank'> <img src = '/" . $imagen->imagefile . "' width =50></img></a>";
         }
         return $html;
     }

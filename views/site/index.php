@@ -8,9 +8,9 @@ $this->title = 'Pronósticos de Renta de Empresa Perforadora ';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h2 style="font-variant: small-caps">Pronósticos de Renta de PPS</h2>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">Aplicación para la visualización de los programas operativos.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
@@ -19,7 +19,7 @@ $this->title = 'Pronósticos de Renta de Empresa Perforadora ';
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2>Programas Operativos</h2>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip

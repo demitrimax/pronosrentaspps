@@ -56,6 +56,7 @@ AppAsset::register($this);
                     ['label' => 'Activos', 'url' => ['/catactivos']],
                     ['label' => 'Esquema de Contratación', 'url' => ['/catesquemactto']],
                     ['label' => 'Tipo de Intervenciones', 'url' => ['/catintervenciones']],
+                    ['label' => 'Programas Operativos', 'url' => ['/catprogramas']],
 
                 ],
             ],

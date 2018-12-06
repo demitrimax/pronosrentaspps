@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Catactivos */
+/* @var $model app\models\Catprogramas */
 
-$this->title = 'Alta de Activo de Producción';
-$this->params['breadcrumbs'][] = ['label' => 'Catálogo de Activos', 'url' => ['index']];
+$this->title = 'Alta de Programas Operativos';
+$this->params['breadcrumbs'][] = ['label' => 'Catálogo de Programas Operativos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="catactivos-create">
+<div class="catprogramas-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

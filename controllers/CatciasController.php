@@ -82,22 +82,22 @@ class CatciasController extends Controller
                   $nombre = 'imagencias/' . $model->imageFile->baseName . uniqid() . '.' . $model->imageFile->extension;
                   $model->imageFile->saveAs($nombre);
                   $imagen = new Imagencia();
-                  $imagen->imagen = $nombre;
+                  $imagen->imagefile = $nombre;
                   $imagen->catciaid = $model->id;
                   $imagen->fecha = date('Y-m-d H:i:s');
                   $imagen->save();
                 }
-            $bitacora = new Bitacora();
-            $bitacora->usuario = "moises";
-            $bitacora->fecha = date('Y-m-d H:i:s');
-            $bitacora->accion = "Creó un catcia: ".$model->nombre;
-            $bitacora->save(false);
-            $pais = Catpais::findOne(['nombre'=>$model->nacionalidad]);
+            //$bitacora = new Bitacora();
+            //$bitacora->usuario = "moises";
+            //$bitacora->fecha = date('Y-m-d H:i:s');
+            //$bitacora->accion = "Creó un catcia: ".$model->nombre;
+            //$bitacora->save(false);
+            //$pais = Catpais::findOne(['nombre'=>$model->nacionalidad]);
             //echo "<pre>";
             //var_dump($pais);
             //var_dump($model->nacionalidad);
             //die;
-            if (!isset($pais)) {
+            /*if (!isset($pais)) {
               $pais = new Catpais();
               $pais->nombre = $model->nacionalidad;
               $pais->contador = 0;
@@ -114,6 +114,7 @@ class CatciasController extends Controller
             $bitacora->fecha = date('Y-m-d H:i:s');
             $bitacora->accion = "Se actualizó un pais: ".$pais->nombre;
             $bitacora->save(false);
+            */
             return $this->redirect(['view', 'id' => $model->id]);
         }
       }
@@ -135,6 +136,16 @@ class CatciasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if (isset($model->imageFile)) {
+                  $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                  $nombre = 'imagencias/' . $model->imageFile->baseName . uniqid() . '.' . $model->imageFile->extension;
+                  $model->imageFile->saveAs($nombre);
+                  $imagen = new Imagencia();
+                  $imagen->imagefile = $nombre;
+                  $imagen->catciaid = $model->id;
+                  $imagen->fecha = date('Y-m-d H:i:s');
+                  $imagen->save();
+                }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

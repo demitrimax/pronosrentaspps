@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "imagencia".
  *
  * @property int $id
- * @property string $imagen
+ * @property string $imagefile
  * @property int $catciaid
  * @property string $fecha
  */
@@ -32,7 +32,7 @@ class Imagencia extends \yii\db\ActiveRecord
         return [
             [['catciaid'], 'integer'],
             [['fecha','imageFile'], 'safe'],
-            [['imagen'], 'string', 'max' => 255],
+            [['imagefile'], 'string', 'max' => 255],
 
         ];
     }
@@ -43,10 +43,10 @@ class Imagencia extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'imagen' => 'Imagen',
-            'catciaid' => 'Catciaid',
-            'fecha' => 'Fecha',
+            'id'        => 'ID',
+            'imagefile' => 'Imagen',
+            'catciaid'  => 'Compañía',
+            'fecha'     => 'Fecha',
         ];
     }
 }
