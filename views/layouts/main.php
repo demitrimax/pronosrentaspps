@@ -52,6 +52,7 @@ AppAsset::register($this);
                 'items' => [
 
                     ['label' => 'Compañías', 'url' => ['/catcias']],
+                    ['label' => 'Subdirecciones', 'url' => ['/catsubdirecciones']],
                     ['label' => 'Activos', 'url' => ['/catactivos']],
                     ['label' => 'Esquema de Contratación', 'url' => ['/catesquemactto']],
                     ['label' => 'Tipo de Intervenciones', 'url' => ['/catintervenciones']],

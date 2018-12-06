@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Catactivos */
+/* @var $model app\models\Catsubdirecciones */
 
 $this->title = $model->nombre;
-$this->params['breadcrumbs'][] = ['label' => 'Catálogo de Activos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Subdirecciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="catactivos-view">
+<div class="catsubdirecciones-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Eliminar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Está seguro de eliminar este elemento?',
+                'confirm' => 'Esta seguro de eliminar este elemento?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,14 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nombre',
             'nomcorto',
-            //'id_subdir',
-            [ 'attribute' => 'id_subdir',
-                'value' => function ($model) {
-                    //OBTIENE EL NOMBRE DE LA SUBDIRECCION
-                    // Este dato lo obtiene de la funcion getSubdireccion en el modelo de activos
-                    return $model->subdireccion->nombre;
-                },
-            ],
         ],
     ]) ?>
 

@@ -5,21 +5,22 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "catactivos".
+ * This is the model class for table "catsubdirecciones".
  *
  * @property int $id
  * @property string $nombre
  * @property string $nomcorto
- * @property int $id_subdir
+ *
+ * @property Catactivos[] $catactivos
  */
-class Catactivos extends \yii\db\ActiveRecord
+class Catsubdirecciones extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'catactivos';
+        return 'catsubdirecciones';
     }
 
     /**
@@ -28,8 +29,7 @@ class Catactivos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_subdir'], 'integer'],
-            [['nombre'], 'string', 'max' => 50],
+            [['nombre'], 'string', 'max' => 100],
             [['nomcorto'], 'string', 'max' => 10],
         ];
     }
@@ -41,14 +41,16 @@ class Catactivos extends \yii\db\ActiveRecord
     {
         return [
             'id'        => 'ID',
-            'nombre'    => 'Nombre',
+            'nombre'    => 'Subdirección',
             'nomcorto'  => 'Abreviatura',
-            'id_subdir' => 'Subdirección',
         ];
     }
-    public function getSubdireccion()
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCatactivos()
     {
-        return \app\models\Catsubdirecciones::findOne($this->id_subdir);;
-        //return $carrera->nombre;
+        return $this->hasMany(Catactivos::className(), ['id_subdir' => 'id']);
     }
 }
