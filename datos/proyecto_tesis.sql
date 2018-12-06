@@ -11,11 +11,203 @@
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 29/11/2018 13:25:23
+ Date: 06/12/2018 17:04:22
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for auth_assignment
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_assignment`;
+CREATE TABLE `auth_assignment`  (
+  `item_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`item_name`, `user_id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `auth_assignment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for auth_item
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_item`;
+CREATE TABLE `auth_item`  (
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `rule_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `data` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `created_at` int(11) NULL DEFAULT NULL,
+  `updated_at` int(11) NULL DEFAULT NULL,
+  `group_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`name`) USING BTREE,
+  INDEX `rule_name`(`rule_name`) USING BTREE,
+  INDEX `idx-auth_item-type`(`type`) USING BTREE,
+  INDEX `fk_auth_item_group_code`(`group_code`) USING BTREE,
+  CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_auth_item_group_code` FOREIGN KEY (`group_code`) REFERENCES `auth_item_group` (`code`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of auth_item
+-- ----------------------------
+INSERT INTO `auth_item` VALUES ('/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//controller', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//crud', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//extension', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//form', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//index', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//model', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('//module', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/asset/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/asset/compress', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/asset/template', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/cache/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/cache/flush', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/cache/flush-all', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/cache/flush-schema', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/cache/index', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/fixture/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/fixture/load', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/fixture/unload', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/gii/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/gii/default/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/gii/default/action', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/gii/default/diff', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/gii/default/index', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/gii/default/preview', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/gii/default/view', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/hello/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/hello/index', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/help/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/help/index', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/help/list', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/help/list-action-options', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/help/usage', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/message/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/message/config', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/message/config-template', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/message/extract', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/create', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/down', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/fresh', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/history', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/mark', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/new', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/redo', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/to', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/migrate/up', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/serve/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/serve/index', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/*', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/auth/change-own-password', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user-permission/set', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user-permission/set-roles', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/bulk-activate', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/bulk-deactivate', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/bulk-delete', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/change-password', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/create', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/delete', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/grid-page-size', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/index', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/update', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('/user-management/user/view', 3, NULL, NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('Admin', 1, 'Admin', NULL, NULL, 1544137162, 1544137162, NULL);
+INSERT INTO `auth_item` VALUES ('assignRolesToUsers', 2, 'Assign roles to users', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('bindUserToIp', 2, 'Bind user to IP', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('changeOwnPassword', 2, 'Change own password', NULL, NULL, 1544137162, 1544137162, 'userCommonPermissions');
+INSERT INTO `auth_item` VALUES ('changeUserPassword', 2, 'Change user password', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('commonPermission', 2, 'Common permission', NULL, NULL, 1544137158, 1544137158, NULL);
+INSERT INTO `auth_item` VALUES ('createUsers', 2, 'Create users', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('deleteUsers', 2, 'Delete users', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('editUserEmail', 2, 'Edit user email', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('editUsers', 2, 'Edit users', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('viewRegistrationIp', 2, 'View registration IP', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('viewUserEmail', 2, 'View user email', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('viewUserRoles', 2, 'View user roles', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('viewUsers', 2, 'View users', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+INSERT INTO `auth_item` VALUES ('viewVisitLog', 2, 'View visit log', NULL, NULL, 1544137162, 1544137162, 'userManagement');
+
+-- ----------------------------
+-- Table structure for auth_item_child
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_item_child`;
+CREATE TABLE `auth_item_child`  (
+  `parent` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `child` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`parent`, `child`) USING BTREE,
+  INDEX `child`(`child`) USING BTREE,
+  CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of auth_item_child
+-- ----------------------------
+INSERT INTO `auth_item_child` VALUES ('Admin', 'assignRolesToUsers');
+INSERT INTO `auth_item_child` VALUES ('Admin', 'changeOwnPassword');
+INSERT INTO `auth_item_child` VALUES ('Admin', 'changeUserPassword');
+INSERT INTO `auth_item_child` VALUES ('Admin', 'createUsers');
+INSERT INTO `auth_item_child` VALUES ('Admin', 'deleteUsers');
+INSERT INTO `auth_item_child` VALUES ('Admin', 'editUsers');
+INSERT INTO `auth_item_child` VALUES ('Admin', 'viewUsers');
+INSERT INTO `auth_item_child` VALUES ('assignRolesToUsers', '/user-management/user-permission/set');
+INSERT INTO `auth_item_child` VALUES ('assignRolesToUsers', '/user-management/user-permission/set-roles');
+INSERT INTO `auth_item_child` VALUES ('assignRolesToUsers', 'viewUserRoles');
+INSERT INTO `auth_item_child` VALUES ('assignRolesToUsers', 'viewUsers');
+INSERT INTO `auth_item_child` VALUES ('changeOwnPassword', '/user-management/auth/change-own-password');
+INSERT INTO `auth_item_child` VALUES ('changeUserPassword', '/user-management/user/change-password');
+INSERT INTO `auth_item_child` VALUES ('changeUserPassword', 'viewUsers');
+INSERT INTO `auth_item_child` VALUES ('createUsers', '/user-management/user/create');
+INSERT INTO `auth_item_child` VALUES ('createUsers', 'viewUsers');
+INSERT INTO `auth_item_child` VALUES ('deleteUsers', '/user-management/user/bulk-delete');
+INSERT INTO `auth_item_child` VALUES ('deleteUsers', '/user-management/user/delete');
+INSERT INTO `auth_item_child` VALUES ('deleteUsers', 'viewUsers');
+INSERT INTO `auth_item_child` VALUES ('editUserEmail', 'viewUserEmail');
+INSERT INTO `auth_item_child` VALUES ('editUsers', '/user-management/user/bulk-activate');
+INSERT INTO `auth_item_child` VALUES ('editUsers', '/user-management/user/bulk-deactivate');
+INSERT INTO `auth_item_child` VALUES ('editUsers', '/user-management/user/update');
+INSERT INTO `auth_item_child` VALUES ('editUsers', 'viewUsers');
+INSERT INTO `auth_item_child` VALUES ('viewUsers', '/user-management/user/grid-page-size');
+INSERT INTO `auth_item_child` VALUES ('viewUsers', '/user-management/user/index');
+INSERT INTO `auth_item_child` VALUES ('viewUsers', '/user-management/user/view');
+
+-- ----------------------------
+-- Table structure for auth_item_group
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_item_group`;
+CREATE TABLE `auth_item_group`  (
+  `code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_at` int(11) NULL DEFAULT NULL,
+  `updated_at` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`code`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of auth_item_group
+-- ----------------------------
+INSERT INTO `auth_item_group` VALUES ('userCommonPermissions', 'User common permission', 1544137162, 1544137162);
+INSERT INTO `auth_item_group` VALUES ('userManagement', 'User management', 1544137162, 1544137162);
+
+-- ----------------------------
+-- Table structure for auth_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_rule`;
+CREATE TABLE `auth_rule`  (
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `data` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `created_at` int(11) NULL DEFAULT NULL,
+  `updated_at` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for catactivos
@@ -76,15 +268,15 @@ CREATE TABLE `catcias`  (
 -- ----------------------------
 -- Records of catcias
 -- ----------------------------
-INSERT INTO `catcias` VALUES (1, 'INDUSTRIAL PERFORADORA DE CAMPECHE, S. A. DE C.V.', 'IPC', NULL, NULL, NULL, NULL);
-INSERT INTO `catcias` VALUES (2, 'PEMEX PERFORACION Y SERVICIOS', 'PPS', NULL, NULL, NULL, NULL);
+INSERT INTO `catcias` VALUES (1, 'INDUSTRIAL PERFORADORA DE CAMPECHE, S. A. DE C.V.', 'IPC', 'N/D', '', '', '');
+INSERT INTO `catcias` VALUES (2, 'PEMEX PERFORACION Y SERVICIOS', 'PPS', '', '', '', '');
 INSERT INTO `catcias` VALUES (3, 'COSL MEXICO, S. A. DE C. V.', 'COSL', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (4, 'GOIMAR, S.A. DE C.V.', 'GOIMAR', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (5, 'MEXDRILL OFFSHORE, S. DE R.L. DE C.V.', 'MEXDRILL', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (6, 'NOBLE CONTRACTING SARL', 'NOBLE', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (7, 'PERFORADORA CENTRAL, S.A. DE C.V.', 'PC', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (8, 'KCA DEUTAG CASPIAN LIMITED', 'KCA', NULL, NULL, NULL, NULL);
-INSERT INTO `catcias` VALUES (9, 'NABORS PERFORACIONES DE MEXICO, S. DE R.L. DE C.V.', 'NABORS', NULL, NULL, NULL, NULL);
+INSERT INTO `catcias` VALUES (9, 'NABORS PERFORACIONES DE MEXICO, S. DE R.L. DE C.V.', 'NABORS', '', '', '', '');
 INSERT INTO `catcias` VALUES (10, 'GRUPO R EXPLORACION MARINA, S.A. DE C.V.', 'GREM', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (11, 'BLAKE INTERNATIONAL USA RIG, LLC.', 'BLAKE', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (12, 'BLUE MARINE DRILLING, S.A. DE C.V. / DEEP DRILLER MEXICO, S. DE R.L. DE C.V. / ABAN & PTE LTD', 'BMD', NULL, NULL, NULL, NULL);
@@ -244,9 +436,9 @@ CREATE TABLE `catpozos`  (
 -- ----------------------------
 -- Records of catpozos
 -- ----------------------------
-INSERT INTO `catpozos` VALUES (8590, 'AGUA FRIA', '342', 'M', NULL, NULL, NULL, 19, 2);
-INSERT INTO `catpozos` VALUES (8591, 'AGUA FRIA', '351', 'M', NULL, NULL, NULL, 19, 2);
-INSERT INTO `catpozos` VALUES (8592, 'AGUA FRIA', '362', 'M', NULL, NULL, NULL, 19, 2);
+INSERT INTO `catpozos` VALUES (8590, 'AGUA FRIA', '342', '', NULL, NULL, NULL, 19, 2);
+INSERT INTO `catpozos` VALUES (8591, 'AGUA FRIA', '351', '', NULL, NULL, NULL, 19, 2);
+INSERT INTO `catpozos` VALUES (8592, 'AGUA FRIA', '362', '', NULL, NULL, NULL, 19, 2);
 INSERT INTO `catpozos` VALUES (8593, 'AGUA FRIA', '376', '', NULL, NULL, NULL, 19, 2);
 INSERT INTO `catpozos` VALUES (8594, 'AGUA FRIA', '377', '', NULL, NULL, NULL, 19, 2);
 INSERT INTO `catpozos` VALUES (8595, 'AGUA FRIA', '378', '', NULL, NULL, NULL, 19, 2);
@@ -6656,6 +6848,51 @@ INSERT INTO `eqtipoequipo` VALUES (9, 'FIJO', 'TRP', 'terrestre');
 INSERT INTO `eqtipoequipo` VALUES (10, 'EMP', 'Empaquetado', 'marino');
 
 -- ----------------------------
+-- Table structure for imagencia
+-- ----------------------------
+DROP TABLE IF EXISTS `imagencia`;
+CREATE TABLE `imagencia`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `imagefile` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `catciaid` int(10) UNSIGNED NULL DEFAULT NULL,
+  `fecha` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of imagencia
+-- ----------------------------
+INSERT INTO `imagencia` VALUES (1, 'imagencias/ipc5c099f433c896.png', 1, '2018-12-06 16:14:27');
+INSERT INTO `imagencia` VALUES (2, 'imagencias/LOGO-Pemex-PS5c09a082bd38a.png', 2, '2018-12-06 16:19:46');
+INSERT INTO `imagencia` VALUES (3, 'imagencias/pemex-eps5c09a0c779471.jpg', 2, '2018-12-06 16:20:55');
+INSERT INTO `imagencia` VALUES (4, 'imagencias/be0a1e7864e5e94f606f821ee7c5a3bf5c09a1d364370.jpg', 9, '2018-12-06 16:25:23');
+
+-- ----------------------------
+-- Table structure for migration
+-- ----------------------------
+DROP TABLE IF EXISTS `migration`;
+CREATE TABLE `migration`  (
+  `version` varchar(180) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `apply_time` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`version`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of migration
+-- ----------------------------
+INSERT INTO `migration` VALUES ('m000000_000000_base', 1544137142);
+INSERT INTO `migration` VALUES ('m140608_173539_create_user_table', 1544137155);
+INSERT INTO `migration` VALUES ('m140611_133903_init_rbac', 1544137156);
+INSERT INTO `migration` VALUES ('m140808_073114_create_auth_item_group_table', 1544137157);
+INSERT INTO `migration` VALUES ('m140809_072112_insert_superadmin_to_user', 1544137158);
+INSERT INTO `migration` VALUES ('m140809_073114_insert_common_permisison_to_auth_item', 1544137158);
+INSERT INTO `migration` VALUES ('m141023_141535_create_user_visit_log', 1544137159);
+INSERT INTO `migration` VALUES ('m141116_115804_add_bind_to_ip_and_registration_ip_to_user', 1544137160);
+INSERT INTO `migration` VALUES ('m141121_194858_split_browser_and_os_column', 1544137160);
+INSERT INTO `migration` VALUES ('m141201_220516_add_email_and_email_confirmed_to_user', 1544137162);
+INSERT INTO `migration` VALUES ('m141207_001649_create_basic_user_permissions', 1544137163);
+
+-- ----------------------------
 -- Table structure for movequipos
 -- ----------------------------
 DROP TABLE IF EXISTS `movequipos`;
@@ -6677,5 +6914,56 @@ CREATE TABLE `movequipos`  (
   CONSTRAINT `movequipos_ibfk_3` FOREIGN KEY (`pozo_id`) REFERENCES `catpozos` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `movequipos_ibfk_4` FOREIGN KEY (`intervencion_id`) REFERENCES `catintervenciones` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `auth_key` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password_hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `confirmation_token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `superadmin` smallint(6) NULL DEFAULT 0,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  `registration_ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `bind_to_ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email_confirmed` smallint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 'superadmin', 'xONReW77SqXF_ztH3hjRn6hIRg02hB45', '$2y$13$8rLuXA0GrNvbqOWoZZP.X.1StE678VsvK4Ns72w64.WUeYwDkh5dm', NULL, 1, 1, 1544137158, 1544137158, NULL, NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for user_visit_log
+-- ----------------------------
+DROP TABLE IF EXISTS `user_visit_log`;
+CREATE TABLE `user_visit_log`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `language` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_agent` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `visit_time` int(11) NOT NULL,
+  `browser` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `os` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  CONSTRAINT `user_visit_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of user_visit_log
+-- ----------------------------
+INSERT INTO `user_visit_log` VALUES (1, '5c09aa49c1d2e', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 1, 1544137289, 'Chrome', 'Windows');
+INSERT INTO `user_visit_log` VALUES (2, '5c09aa69173c2', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 1, 1544137321, 'Chrome', 'Windows');
 
 SET FOREIGN_KEY_CHECKS = 1;
