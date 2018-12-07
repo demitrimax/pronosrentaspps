@@ -20,6 +20,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'usuario_id')->textInput() ?>
 
+    <?= $form->field($model, 'fecha')->textInput(['type'=>'date']) ?> <!-- Aqui le puse el formato de fecha -->
+
+
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>

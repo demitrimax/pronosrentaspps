@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'anio',
             'version',
+            'fecha',
             //'usuario_id',
         ],
     ]) ?>

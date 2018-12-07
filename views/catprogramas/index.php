@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'anio',
             'version',
             'usuario_id',
+            'fecha',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -44,6 +44,10 @@ class ThreadController extends WebThreadController
   {
     //echo "Chino";
     //die;
+    //echo "<pre>";
+    //var_dump(Yii::$app->thread);
+    //die;
+    Yii::$app->thread->init();
     Yii::$app->thread->addThread(['/thread/send-message','message'=>'hello world']);
     return $this->render('vistax');
   }

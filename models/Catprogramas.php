@@ -36,6 +36,7 @@ class Catprogramas extends \yii\db\ActiveRecord
             [['anio'], 'string', 'max' => 4],
             [['version'], 'string', 'max' => 10],
             [['nombre'], 'unique'],
+            [['fecha'], 'string', 'max' => 10],  //Aqui tiene que estar la fecha en tipo string
         ];
     }
 
@@ -50,6 +51,7 @@ class Catprogramas extends \yii\db\ActiveRecord
             'anio'          => 'Año',
             'version'       => 'Versión',
             'usuario_id'    => 'Usuario',
+            'fecha'         => 'Fecha',
         ];
     }
 
