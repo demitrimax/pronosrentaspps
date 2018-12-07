@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "571116a7cd5ccd493be3bfe3834ef55f",
+    "content-hash": "4b0d6a9577699510d4cea4d28a67d8cf",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -261,6 +261,47 @@
                 "browser"
             ],
             "time": "2015-08-26T20:05:14+00:00"
+        },
+        {
+            "name": "kriss/yii2-thread",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/krissss/yii2-thread.git",
+                "reference": "85e07826df07c33302040b2df7ba649fed78a5fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/krissss/yii2-thread/zipball/85e07826df07c33302040b2df7ba649fed78a5fb",
+                "reference": "85e07826df07c33302040b2df7ba649fed78a5fb",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kriss\\thread\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kriss",
+                    "email": "462679766@qq.com"
+                }
+            ],
+            "description": "yii2 multi thread with fsockopen",
+            "homepage": "https://github.com/krissss/yii2-thread",
+            "keywords": [
+                "Thread",
+                "yii2"
+            ],
+            "time": "2017-05-15T01:06:39+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

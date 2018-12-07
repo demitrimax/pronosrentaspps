@@ -51,7 +51,7 @@ $config = [
             ],
         ],
         'db' => $db,
-        
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -61,7 +61,13 @@ $config = [
                 '<controller:\w+>/<action:\w+>'             => '<controller>/<action>',
             ],
         ],
-        
+        'thread' => [
+                'class' => 'kriss\thread\components\Thread',
+                'enable' => true,
+                'tokenValidate' => false,
+                'tokenParam' => 'token',
+                'token' => 'suiyitianxiezijidetoken',
+            ],
     ],
     'modules'=>[
     'user-management' => [
@@ -79,7 +85,7 @@ $config = [
         // $: anchored to the end of the string
 
         //'passwordRegexp' => '^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$',
-        
+
 
         // Here you can set your handler to change layout for any controller or action
         // Tip: you can use this event in any module
