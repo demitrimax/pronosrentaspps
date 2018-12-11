@@ -40,7 +40,7 @@ class Catcias extends \yii\db\ActiveRecord
             [['direccion'], 'string', 'max' => 120],
             [['replegal'], 'string', 'max' => 60],
             [['nacionalidad'], 'string', 'max' => 50],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'],
         ];
     }
 

@@ -73,11 +73,11 @@ class CatciasController extends Controller
         //var_dump(Yii::$app->request->post());
         //die;
         if ($model->load(Yii::$app->request->post())) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
 
-          $model->nacionalidad = mb_strtoupper($model->nacionalidad);
-          $model->iniciales = mb_strtoupper($model->iniciales);
+          //$model->nacionalidad = mb_strtoupper($model->nacionalidad);
+          //$model->iniciales = mb_strtoupper($model->iniciales);
           if ($model->save()) {
-              if (UploadedFile::getInstance($model, 'imageFile')) {
                   $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
                   $nombre = 'imagencias/' . $model->imageFile->baseName . uniqid() . '.' . $model->imageFile->extension;
                   $model->imageFile->saveAs($nombre);
@@ -86,7 +86,6 @@ class CatciasController extends Controller
                   $imagen->catciaid = $model->id;
                   $imagen->fecha = date('Y-m-d H:i:s');
                   $imagen->save();
-                }
             //$bitacora = new Bitacora();
             //$bitacora->usuario = "moises";
             //$bitacora->fecha = date('Y-m-d H:i:s');
