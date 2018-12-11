@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "catcias".
@@ -39,7 +40,7 @@ class Catcias extends \yii\db\ActiveRecord
             [['direccion'], 'string', 'max' => 120],
             [['replegal'], 'string', 'max' => 60],
             [['nacionalidad'], 'string', 'max' => 50],
-            [['imageFile'], 'safe'],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 

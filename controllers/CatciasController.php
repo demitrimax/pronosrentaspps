@@ -77,7 +77,7 @@ class CatciasController extends Controller
           $model->nacionalidad = mb_strtoupper($model->nacionalidad);
           $model->iniciales = mb_strtoupper($model->iniciales);
           if ($model->save()) {
-              if (isset($model->imageFile)) {
+              if (UploadedFile::getInstance($model, 'imageFile')) {
                   $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
                   $nombre = 'imagencias/' . $model->imageFile->baseName . uniqid() . '.' . $model->imageFile->extension;
                   $model->imageFile->saveAs($nombre);
