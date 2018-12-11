@@ -8,6 +8,9 @@ use app\models\CatsubdireccionesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\base\ErrorException;
+use yii\db\IntegrityException;
+use yii\db\Exception;
 
 /**
  * CatsubdireccionesController implements the CRUD actions for Catsubdirecciones model.
@@ -104,8 +107,39 @@ class CatsubdireccionesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
 
+      //ELIMINACION FISICA CON DEPENDENCIAS
+      /*
+      try {
+        $this->findModel($id)->delete();
+        return $this->redirect(['index']);
+      } catch (Exception $e) {
+
+        \Yii::warning("No se puede eliminar subdirecciones porque tiene Hijos.");
+
+        return $this->render('error', [
+            'error' => 'No se puede eliminar subdirecciones porque tiene Dependencias.',
+            'model' => $this->findModel($id),
+        ]);
+      }
+      */
+
+        //BORRADO LOGICO
+
+        $modelo = $this->findModel($id);
+        $activos = $modelo->catactivos;
+        if (count($activos)>0)  //VERIFICA QUE NO TENGA DEPENDENCIAS
+        {
+          return $this->render('error', [
+              'error' => 'No se puede eliminar subdirecciones porque tiene Dependencias.',
+              'model' => $this->findModel($id),
+          ]);
+        }
+        else
+        {
+          $modelo->borrado = 1;
+          $modelo->save();
+        }
         return $this->redirect(['index']);
     }
 
@@ -124,4 +158,12 @@ class CatsubdireccionesController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    public function actionError()
+    {
+      $exception = Yii::$app->errorHandler->exception;
+      if ($exception !== null) {
+          return $this->render('error', ['exception' => $exception]);
+      }
+    }
+
 }

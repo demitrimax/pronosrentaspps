@@ -31,6 +31,7 @@ class Catsubdirecciones extends \yii\db\ActiveRecord
         return [
             [['nombre'], 'string', 'max' => 100],
             [['nomcorto'], 'string', 'max' => 10],
+            [['borrado'], 'integer'],
         ];
     }
 
@@ -40,9 +41,12 @@ class Catsubdirecciones extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'        => 'ID',
-            'nombre'    => 'Subdirección',
-            'nomcorto'  => 'Abreviatura',
+            'id'          => 'ID',
+            'nombre'      => 'Subdirección',
+            'nomcorto'    => 'Abreviatura',
+            'borrado'     => 'Borrado',
+            'catactivos'  => 'Activos',
+
         ];
     }
 
@@ -52,5 +56,9 @@ class Catsubdirecciones extends \yii\db\ActiveRecord
     public function getCatactivos()
     {
         return $this->hasMany(Catactivos::className(), ['id_subdir' => 'id']);
+    }
+    public function getEstado()
+    {
+      return $this->borrado == 1 ? 'Eliminado' : 'Activo';
     }
 }

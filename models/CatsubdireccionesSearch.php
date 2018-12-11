@@ -41,7 +41,7 @@ class CatsubdireccionesSearch extends Catsubdirecciones
      */
     public function search($params)
     {
-        $query = Catsubdirecciones::find();
+        $query = Catsubdirecciones::find()->where(['borrado'=>'0']); //MUESTRA SOLO LOS REGISTROS QUE ESTAN ACTIVOS
 
         // add conditions that should always apply here
 
