@@ -9,6 +9,8 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use webvimark\modules\UserManagement\components\GhostMenu;
+use webvimark\modules\UserManagement\UserManagementModule;
 
 AppAsset::register($this);
 ?>
@@ -59,6 +61,25 @@ AppAsset::register($this);
                     ['label' => 'Programas Operativos', 'url' => ['/catprogramas']],
 
                 ],
+
+            ],
+            [
+                'label' => 'Frontend route',
+                'items' => [
+
+                    ['label'=>'Login', 'url'=>['/user-management/auth/login']],
+                    ['label'=>'Logout', 'url'=>['/user-management/auth/logout']],
+                    ['label'=>'Registration', 'url'=>['/user-management/auth/registration']],
+                    ['label'=>'Change own password', 'url'=>['/user-management/auth/change-own-password']],
+                    ['label'=>'Password recovery', 'url'=>['/user-management/auth/password-recovery']],
+                    ['label'=>'E-mail confirmation', 'url'=>['/user-management/auth/confirm-email']],
+
+                ],
+                
+            ],
+            [
+                'label' => 'Backend routes',
+                'items'=>UserManagementModule::menuItems()
             ],
             ['label' => 'Acerca de', 'url' => ['/site/about']],
             ['label' => 'Contacto', 'url' => ['/site/contact']],

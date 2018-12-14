@@ -11,7 +11,7 @@
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 06/12/2018 17:04:22
+ Date: 13/12/2018 18:02:23
 */
 
 SET NAMES utf8mb4;
@@ -263,7 +263,7 @@ CREATE TABLE `catcias`  (
   `telefono` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `nacionalidad` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of catcias
@@ -308,6 +308,12 @@ INSERT INTO `catcias` VALUES (37, 'MERCO INGENIERIA', 'MERCO', NULL, NULL, NULL,
 INSERT INTO `catcias` VALUES (38, 'PARAGON OFFSHORE CONTRACTING, S.A.R.L.', 'PARAGON', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (39, 'HALLIBURTON', 'HALL', NULL, NULL, NULL, NULL);
 INSERT INTO `catcias` VALUES (40, 'COSAFI DEL NORESTE', 'COSAFI', NULL, NULL, NULL, NULL);
+INSERT INTO `catcias` VALUES (41, '', '', '', '', '', '');
+INSERT INTO `catcias` VALUES (42, '', '', '', '', '', '');
+INSERT INTO `catcias` VALUES (43, '', '', '', '', '', '');
+INSERT INTO `catcias` VALUES (44, '', '', '', '', '', '');
+INSERT INTO `catcias` VALUES (45, 'MARITZA', '', '', '', '', '');
+INSERT INTO `catcias` VALUES (46, 'DOE', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for catequipos
@@ -6646,29 +6652,32 @@ CREATE TABLE `catprogramas`  (
   `nombre` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `anio` varchar(4) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `version` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `usuario_id` int(10) UNSIGNED NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  `usuario_id` int(10) NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `usuario_id`(`usuario_id`) USING BTREE,
+  CONSTRAINT `catprogramas_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of catprogramas
 -- ----------------------------
-INSERT INTO `catprogramas` VALUES (1, 'POT-I-2015', '2015', '1', 1);
-INSERT INTO `catprogramas` VALUES (2, 'POT-II-2015', '2015', '2', 1);
-INSERT INTO `catprogramas` VALUES (3, 'POT-III-2015', '2015', '3', 1);
-INSERT INTO `catprogramas` VALUES (4, 'POT-IV-2015', '2015', '4', 1);
-INSERT INTO `catprogramas` VALUES (5, 'POT-I-2016', '2016', '1', 1);
-INSERT INTO `catprogramas` VALUES (6, 'POT-II-2016', '2016', '2', 1);
-INSERT INTO `catprogramas` VALUES (7, 'POT-III-2016', '2016', '3', 1);
-INSERT INTO `catprogramas` VALUES (8, 'POT-IV-2016', '2016', '4', 1);
-INSERT INTO `catprogramas` VALUES (9, 'POT-I-2017', '2017', '1', 1);
-INSERT INTO `catprogramas` VALUES (10, 'POT-II-2017', '2017', '2', 1);
-INSERT INTO `catprogramas` VALUES (11, 'POT-III-2017', '2017', '3', 1);
-INSERT INTO `catprogramas` VALUES (12, 'POT-IV-2017', '2017', '4', 1);
-INSERT INTO `catprogramas` VALUES (13, 'POT-I-2018', '2018', '1', 1);
-INSERT INTO `catprogramas` VALUES (14, 'POT-II-2018', '2018', '2', 1);
-INSERT INTO `catprogramas` VALUES (15, 'POT-III-2018', '2018', '3', 1);
-INSERT INTO `catprogramas` VALUES (16, 'POT-IV-2018', '2018', '4', 1);
+INSERT INTO `catprogramas` VALUES (1, 'POT-I-2015', '2015', '1', 1, NULL);
+INSERT INTO `catprogramas` VALUES (2, 'POT-II-2015', '2015', '2', 1, NULL);
+INSERT INTO `catprogramas` VALUES (3, 'POT-III-2015', '2015', '3', 1, NULL);
+INSERT INTO `catprogramas` VALUES (4, 'POT-IV-2015', '2015', '4', 1, NULL);
+INSERT INTO `catprogramas` VALUES (5, 'POT-I-2016', '2016', '1', 1, NULL);
+INSERT INTO `catprogramas` VALUES (6, 'POT-II-2016', '2016', '2', 1, NULL);
+INSERT INTO `catprogramas` VALUES (7, 'POT-III-2016', '2016', '3', 1, NULL);
+INSERT INTO `catprogramas` VALUES (8, 'POT-IV-2016', '2016', '4', 1, NULL);
+INSERT INTO `catprogramas` VALUES (9, 'POT-I-2017', '2017', '1', 1, NULL);
+INSERT INTO `catprogramas` VALUES (10, 'POT-II-2017', '2017', '2', 1, NULL);
+INSERT INTO `catprogramas` VALUES (11, 'POT-III-2017', '2017', '3', 1, NULL);
+INSERT INTO `catprogramas` VALUES (12, 'POT-IV-2017', '2017', '4', 1, NULL);
+INSERT INTO `catprogramas` VALUES (13, 'POT-I-2018', '2018', '1', 1, NULL);
+INSERT INTO `catprogramas` VALUES (14, 'POT-II-2018', '2018', '2', 1, NULL);
+INSERT INTO `catprogramas` VALUES (15, 'POT-III-2018', '2018', '3', 1, NULL);
+INSERT INTO `catprogramas` VALUES (16, 'POT-IV-2018', '2018', '4', 1, NULL);
 
 -- ----------------------------
 -- Table structure for catsubdirecciones
@@ -6856,8 +6865,10 @@ CREATE TABLE `imagencia`  (
   `imagefile` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `catciaid` int(10) UNSIGNED NULL DEFAULT NULL,
   `fecha` timestamp(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `catciaid`(`catciaid`) USING BTREE,
+  CONSTRAINT `imagencia_ibfk_1` FOREIGN KEY (`catciaid`) REFERENCES `catcias` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of imagencia
@@ -6866,6 +6877,10 @@ INSERT INTO `imagencia` VALUES (1, 'imagencias/ipc5c099f433c896.png', 1, '2018-1
 INSERT INTO `imagencia` VALUES (2, 'imagencias/LOGO-Pemex-PS5c09a082bd38a.png', 2, '2018-12-06 16:19:46');
 INSERT INTO `imagencia` VALUES (3, 'imagencias/pemex-eps5c09a0c779471.jpg', 2, '2018-12-06 16:20:55');
 INSERT INTO `imagencia` VALUES (4, 'imagencias/be0a1e7864e5e94f606f821ee7c5a3bf5c09a1d364370.jpg', 9, '2018-12-06 16:25:23');
+INSERT INTO `imagencia` VALUES (5, 'imagencias/doc_escan_maritza5c0f154316bc2.pdf', 43, '2018-12-10 19:39:15');
+INSERT INTO `imagencia` VALUES (6, 'imagencias/Documento_Maritza15c0f159bd37fb.pdf', 44, '2018-12-10 19:40:43');
+INSERT INTO `imagencia` VALUES (7, 'imagencias/Documento_Maritza15c0f1de593803.pdf', 45, '2018-12-10 20:16:05');
+INSERT INTO `imagencia` VALUES (8, 'imagencias/marykay_doe_reserva hotel5c0f1f66b0e2d.pdf', 46, '2018-12-10 20:22:30');
 
 -- ----------------------------
 -- Table structure for migration
@@ -6958,12 +6973,33 @@ CREATE TABLE `user_visit_log`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `user_visit_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user_visit_log
 -- ----------------------------
 INSERT INTO `user_visit_log` VALUES (1, '5c09aa49c1d2e', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 1, 1544137289, 'Chrome', 'Windows');
 INSERT INTO `user_visit_log` VALUES (2, '5c09aa69173c2', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 1, 1544137321, 'Chrome', 'Windows');
+INSERT INTO `user_visit_log` VALUES (3, '5c0ac302e464b', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 1, 1544209154, 'Chrome', 'Windows');
+INSERT INTO `user_visit_log` VALUES (4, '5c0f0ae28f14a', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36', 1, 1544489698, 'Chrome', 'Windows');
+INSERT INTO `user_visit_log` VALUES (5, '5c117a67f2bb1', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0', 1, 1544649320, 'Firefox', 'Windows');
+INSERT INTO `user_visit_log` VALUES (6, '5c117b75ea473', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 1, 1544649589, 'Chrome', 'Windows');
+INSERT INTO `user_visit_log` VALUES (7, '5c12c7c15499c', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0', 1, 1544734657, 'Firefox', 'Windows');
+INSERT INTO `user_visit_log` VALUES (8, '5c12f035a28ac', '127.0.0.1', 'es', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 1, 1544745013, 'Chrome', 'Windows');
+
+-- ----------------------------
+-- Function structure for eqcaract
+-- ----------------------------
+DROP FUNCTION IF EXISTS `eqcaract`;
+delimiter ;;
+CREATE FUNCTION `eqcaract`(p_eqcarac int)
+ RETURNS varchar(20) CHARSET latin1
+begin
+declare temp varchar(20);
+SELECT c.caracteristica into temp FROM eqcaracteristicas c WHERE c.id = p_eqcarac;
+return temp;
+end
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;
